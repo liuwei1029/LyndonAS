@@ -2,8 +2,6 @@
 
 Construct multihomogeneous families of algebras from Lyndon closed sets in Wolfram Language / Mathematica, compute PBW / Gröbner conditions, and solve for the parameters.
 
-The package provides both an algorithm on the original alphabet and a superletter algorithm based on Zhou–Lu's Lemma 3.3. For a closed set with six elements, the superletter algorithm checks 20 triple ambiguities and additionally verifies compatibility with the original defining relations to preserve the original parameter family.
-
 ## Quick start
 
 Open `RunConstructionSuper.wl` in Mathematica, edit the configuration at the top, and run it. Alternatively, evaluate the following in a fresh kernel:
