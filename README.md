@@ -1,18 +1,18 @@
 # LyndonAS
 
-用 Wolfram Language / Mathematica 从 Lyndon 闭集构造多重次数齐次的带参数代数，计算 PBW / Gröbner 条件，并求解参数。
+Construct multihomogeneous families of algebras from Lyndon closed sets in Wolfram Language / Mathematica, compute PBW / Gröbner conditions, and solve for the parameters.
 
-提供原始字母算法，以及基于 Zhou–Lu 引理 3.3 的超级字母算法。超级字母算法在六元素闭集上检查 20 个三元式，并额外验证原定义关系的兼容性，以保留原来的参数族。
+The package provides both an algorithm on the original alphabet and a superletter algorithm based on Zhou–Lu's Lemma 3.3. For a closed set with six elements, the superletter algorithm checks 20 triple ambiguities and additionally verifies compatibility with the original defining relations to preserve the original parameter family.
 
-## 快速开始
+## Quick start
 
-在 Mathematica 中打开 `RunConstructionSuper.wl`，修改开头的配置并运行。也可以在新内核中执行：
+Open `RunConstructionSuper.wl` in Mathematica, edit the configuration at the top, and run it. Alternatively, evaluate the following in a fresh kernel:
 
 ```wolfram
 Get["/path/to/LyndonAS/RunConstructionSuper.wl"]
 ```
 
-将路径替换为本机仓库位置。主要配置为：
+Replace the path with the location of your local repository. The main configuration options are:
 
 ```wolfram
 alphabetSize = 3;
@@ -23,30 +23,30 @@ tailMode = "Kharchenko";
 extraConditions = True;
 ```
 
-仓库中的入口保存的是当前工作配置；上面是可自行选用的六元素例子。修改 `alphabetSize` 时也需要修改 `U` 和 `letterDegrees`。
+The entry script in the repository contains the current working configuration; the configuration above is an optional six-element example. When changing `alphabetSize`, also update `U` and `letterDegrees`.
 
-`q11 == q22` 等附加关系可写入 `extraConditions`。`"None"` 尾项模式会改变考察的参数族，不只是性能选项。
+Use `extraConditions` to impose additional relations such as `q11 == q22`. Setting the tail mode to `"None"` changes the parameter family under consideration; it is not merely a performance option.
 
-入口只打印交换关系、方程数量、解和完成/超时状态。完整计算结果与检查点保存在本地，不纳入版本控制。`Solution: False` 表示无解，超时会单独标明。
+The entry script prints only the commutation relations, the number of equations, the solution, and the completion or timeout status. Full results and checkpoints are saved locally and excluded from version control. `Solution: False` means that there is no solution; timeouts are reported separately.
 
-## 文件
+## Files
 
-| 文件 | 用途 |
+| File | Purpose |
 |---|---|
-| `LyndonAS.wl` | Lyndon 词、原始字母约化、系数饱和与参数求解 |
-| `LyndonASSuper.wl` | 缓存约化、超级字母交换规则和三元条件 |
-| `RunConstructionSuper.wl` | 推荐的运行入口 |
-| `RunConstructionSaturated.wl` | 原始算法与非零参数饱和 |
-| `RunConstruction.wl` | 原始运行入口 |
-| `ArbitraryGenerators.wl` | 任意生成元数的示例族 |
-| `EnumerateClosedSets.wl` | 有限 Lyndon 闭集枚举 |
-| `Tests.wlt`, `SaturationTests.wlt`, `SuperTests.wlt` | 回归和交叉验证 |
+| `LyndonAS.wl` | Lyndon words, reduction on the original alphabet, saturation of coefficient ideals, and parameter solving |
+| `LyndonASSuper.wl` | Cached reductions, superletter commutation rules, and triple-ambiguity conditions |
+| `RunConstructionSuper.wl` | Recommended entry script |
+| `RunConstructionSaturated.wl` | Original algorithm with saturation by nonzero parameters |
+| `RunConstruction.wl` | Original entry script |
+| `ArbitraryGenerators.wl` | Example families with an arbitrary number of generators |
+| `EnumerateClosedSets.wl` | Enumeration of finite Lyndon closed sets |
+| `Tests.wlt`, `SaturationTests.wlt`, `SuperTests.wlt` | Regression tests and cross-checks |
 
-详细说明：[超级字母算法](SUPER-ALGORITHM.zh.md)、[原程序说明](README.zh.md)、[饱和处理](SATURATION.zh.md)、[任意生成元示例](ARBITRARY-GENERATORS.zh.md)、[二字母六元素闭集](closed-sets-n2-size6.md)。部分详细说明中的绝对路径是开发机器上的示例，使用时请替换。
+Detailed documentation (in Chinese): [Superletter algorithm](SUPER-ALGORITHM.zh.md), [Original implementation](README.zh.md), [Saturation](SATURATION.zh.md), [Examples with arbitrary numbers of generators](ARBITRARY-GENERATORS.zh.md), and [Six-element closed sets on two letters](closed-sets-n2-size6.md). Some absolute paths in these documents are examples from the development machine; replace them with your local paths.
 
-## 环境和验证
+## Environment and validation
 
-已在 Mathematica 14.2 中验证。超级字母入口不依赖 NCAlgebra；原测试中的独立交叉检查使用 NCAlgebra 6。
+Validated in Mathematica 14.2. The superletter entry script does not require NCAlgebra; the independent cross-checks in the original tests use NCAlgebra 6.
 
 ```wolfram
 dir = "/path/to/LyndonAS";
@@ -54,11 +54,11 @@ TestReport[FileNameJoin[{dir, #}] & /@
   {"Tests.wlt", "SaturationTests.wlt", "SuperTests.wlt"}]
 ```
 
-最近验证为 40 项测试通过，包括全部 15 个二字母六元素闭集的 30 个精确参数点交叉检查。性能记录见 `super-benchmark-results.wl`；其中超时项目明确标为 `Missing["SaturationTimeLimit"]`，不代表验证成功。
+The latest reported validation passed 40 tests, including cross-checks at 30 exact parameter points covering all 15 six-element closed sets on two letters. Performance results are recorded in `super-benchmark-results.wl`. Timed-out cases are explicitly marked as `Missing["SaturationTimeLimit"]` and do not count as successful validation.
 
-系数条件的生成、交换系数的 Gröbner 基计算以及 `Reduce` 分别可能耗时。维数与 AS 正则性结论以相应数学假设和 Gröbner 条件成立为前提。
+Generating coefficient conditions, computing commutative Gröbner bases for the coefficient equations, and running `Reduce` can each be time-consuming. Conclusions about dimensions and AS regularity are conditional on the relevant mathematical hypotheses and Gröbner conditions being satisfied.
 
-## 文献
+## References
 
 - G.-S. Zhou, D.-M. Lu, [Lyndon words for Artin-Schelter regular algebras](https://arxiv.org/abs/1403.0385), Lemma 3.3.
 - T. Gateva-Ivanova, [Algebras defined by Lyndon words and Artin-Schelter regularity](https://arxiv.org/abs/1905.11281).
