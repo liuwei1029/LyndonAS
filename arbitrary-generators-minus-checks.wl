@@ -1,0 +1,10 @@
+{<|"n" -> 2, "p" -> 2, "Epsilon" -> -1, "PBWGenerators" -> 3, 
+  "Relations" -> 2, "Ambiguities" -> 1, "IsGroebnerBasis" -> True, 
+  "Seconds" -> 0.0003843|>, <|"n" -> 3, "p" -> 2, "Epsilon" -> -1, 
+  "PBWGenerators" -> 6, "Relations" -> 9, "Ambiguities" -> 16, 
+  "IsGroebnerBasis" -> True, "Seconds" -> 0.0178424|>, 
+ <|"n" -> 4, "p" -> 2, "Epsilon" -> -1, "PBWGenerators" -> 10, 
+  "Relations" -> 24, "Ambiguities" -> 85, "IsGroebnerBasis" -> True, 
+  "Seconds" -> 0.3470977|>, <|"n" -> 5, "p" -> 2, "Epsilon" -> -1, 
+  "PBWGenerators" -> 15, "Relations" -> 50, "Ambiguities" -> 290, 
+  "IsGroebnerBasis" -> True, "Seconds" -> 3.7925717|>}

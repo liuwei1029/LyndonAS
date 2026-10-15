@@ -1,0 +1,25 @@
+# Generated calculations and restart checkpoints
+construction-result*.wl
+coefficient-saturation-result.wl
+*-checkpoint.wl
+*-test-results.wl
+test-results.wl
+super-numeric-audit.wl
+super-six-ideal-check.wl
+
+# Local papers, archives and scratch files
+*.pdf
+*.zip
+*.log
+*.bak
+*~
+.DS_Store
+__MACOSX/
+tmp/
+
+# Local credentials and editor settings
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/

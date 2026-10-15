@@ -1,0 +1,9 @@
+Notebook[{
+ Cell["从 Lyndon 闭集构造 AS 正则代数", "Title"],
+ Cell["先在同目录 RunConstruction.wl 的配置块中修改字母数量、U 和辫子矩阵，再运行下面的输入单元。默认两个字母及文章中的四元素闭集。程序将枚举尾项、计算 braided bracket、生成系数条件并调用 Reduce。", "Text"],
+ Cell[BoxData[RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", RowBox[{"{", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"RunConstruction.wl\""}], "}"}], "]"}], "]"}]], "Input"],
+ Cell["运行附加示例：", "Text"],
+ Cell[BoxData[RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", RowBox[{"{", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"Examples.wl\""}], "}"}], "]"}], "]"}]], "Input"],
+ Cell["运行测试（最后一个测试需要 NCAlgebra 6）：", "Text"],
+ Cell[BoxData[RowBox[{"TestReport", "[", RowBox[{"FileNameJoin", "[", RowBox[{"{", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"Tests.wlt\""}], "}"}], "]"}], "]"}]], "Input"]
+}, WindowTitle -> "Lyndon AS-regular construction", StyleDefinitions -> "Default.nb"]
